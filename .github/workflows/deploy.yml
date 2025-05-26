@@ -8,11 +8,34 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted #self
+    
+    env:
+      ENV: production
+      IMAGE_NAME: izavgorodniy/fastapi-app:latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install pytest
+
+    - name: Run unit tests
+      run: pytest
+
+    - name: Build Docker image using Dockerfile
+      run: docker build -t $IMAGE_NAME .
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker image
+      run: docker push $IMAGE_NAME
     
     - name: Verify Minikube is running
       run: |
