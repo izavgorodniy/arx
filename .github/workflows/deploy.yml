@@ -7,8 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted #self
-    
+    runs-on: self-hosted #self#
     env:
       ENV: production
       IMAGE_NAME: izavgorodniy/fastapi-app:latest
