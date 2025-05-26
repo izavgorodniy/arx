@@ -26,7 +26,7 @@ jobs:
       run: pip install pytest
 
     - name: Run unit tests
-      run: pytest
+      run: pytest tests.py
 
     - name: Build Docker image using Dockerfile
       run: docker build -t $IMAGE_NAME .
