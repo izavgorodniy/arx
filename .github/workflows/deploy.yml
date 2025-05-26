@@ -13,10 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    
+    - name: Verify Minikube is running
+      run: |
+         minikube status
+
     - name: Set up Kubeconfig
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+        chmod 600 $HOME/.kube/config
 
     - name: Apply Kubernetes manifests
       run: |
