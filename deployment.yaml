@@ -26,6 +26,13 @@ spec:
           value: "sqlite://memory"
         - name: TIMEOUT_SECONDS
           value: "30"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
         readinessProbe:
           httpGet:
             path: /ready
