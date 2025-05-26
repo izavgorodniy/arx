@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fastapi-container
-        image: izavgorodniy/fastapi-app:latest  # Replace with your actual image
+        image: izavgorodniy/fastapi-app:latest 
         ports:
         - containerPort: 8085
         env:
@@ -53,5 +53,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8085
-      nodePort: 30085 # Optional: specify or let Kubernetes assign
+      nodePort: 30085
 
