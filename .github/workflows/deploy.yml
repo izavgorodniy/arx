@@ -29,7 +29,7 @@ jobs:
       run: pytest --version
 
     - name: Run unit tests
-      run: pytest tests.py
+      run: python3 -m pytest tests.py
 
     - name: Build Docker image using Dockerfile
       run: docker build -t $IMAGE_NAME .
